@@ -49,7 +49,7 @@ const Top = () => {
     </div>
   );
   return (
-    <div className="flex flex-row ">
+    <div className="flex flex-row w-full">
       <div className="flex w-[1/2]">
         <Input placeholder="Basic usage" size="large" />;
       </div>

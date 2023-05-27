@@ -3,12 +3,12 @@ import FormComponent from '../Reusables/FormComponent'
 
 const InvoiceDetails = () => {
   return (
-    <div className='flex flex-col items-center justify-between'>
+    <div className='flex flex-col items-start justify-between'>
         <div>
            <FormComponent/> 
         </div>
         <div>
-            
+
         </div>
         
     </div>
