@@ -45,13 +45,6 @@ const ReceiptientandSender = () => {
     visible: true
   },
   {
-    name: "businessNumber",
-    label: "Business Number",
-    required: false,
-    message: "Please input your Business Number",
-    visible: true
-  },
-  {
     name: "website",
     label: "Website",
     required: false,
@@ -118,13 +111,13 @@ const ReceiptientandSender = () => {
   
 ]);
   return (
-    <div className="flex  justify-between">
-      <div className="flex flex-col">
-        <h2>From</h2>
+    <div className="flex w-full ">
+      <div className="flex items-start flex-col w-1/2">
+        <h2 className="text-lg font-semibold text-gray-700 pb-3">From</h2>
         <FormComponent fromlabels={fromlabels} />
       </div>
-      <div className="flex flex-col">
-        <h2>To</h2>
+      <div className="flex items-start flex-col w-1/2">
+        <h2 className="text-lg font-semibold text-gray-700 pb-3">To</h2>
         <FormComponent tolabels={tolabels}/>
       </div>
     </div>

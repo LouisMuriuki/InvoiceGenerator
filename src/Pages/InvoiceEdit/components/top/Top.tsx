@@ -45,19 +45,20 @@ const Top = () => {
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
+      <div style={{ marginTop: 8 }}>Add Logo</div>
     </div>
   );
   return (
-    <div className="flex flex-row items-center justify-between w-full">
-      <div className="flex items-center justify-center w-max" >
-        <Input placeholder="Invoice" className="" size="large" />
-      </div>
-      <div className="flex items-center justify-center">
+    <div className="flex flex-row items-center w-full">
+    <div className="flex items-center justify-center w-1/2">
+      <Input placeholder="Invoice" className="flex w-[75%]" size="large" />
+    </div>
+    <div className="flex items-center justify-center w-1/2">
+      <div className="flex justify-center"> {/* Add justify-center class here */}
         <Upload
           name="avatar"
           listType="picture-card"
-          className="avatar-uploader flex justify-center"
+          className=""
           showUploadList={false}
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           beforeUpload={beforeUpload}
@@ -71,6 +72,8 @@ const Top = () => {
         </Upload>
       </div>
     </div>
+  </div>
+  
   );
 };
 

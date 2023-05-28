@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import InvoiceTop from "./InvoiceTop";
-import InvoiceEdit from "../Pages/InvoiceEdit";
+import InvoiceEdit from "../Pages/InvoiceEdit/InvoiceEdit";
 import { FormContext } from "../Context/FormContext";
 import InvoicePreview from "../Pages/InvoicePreview/InvoicePreview";
 import SideBar from "../components/Sidebar/SideBar";

@@ -1,30 +1,29 @@
 import React from "react";
 import { Form, Input } from "antd";
-interface fromlabels{
-   name: string;
+interface fromlabels {
+  name: string;
   label: string;
   required: boolean;
   message: string;
   visible: boolean;
 }
-interface tolabels{
-   name: string;
+interface tolabels {
+  name: string;
   label: string;
   required: boolean;
   message: string;
   visible: boolean;
 }
 interface FormProps {
-  fromlabels?:fromlabels[]
-  tolabels?:tolabels[]
- 
+  fromlabels?: fromlabels[];
+  tolabels?: tolabels[];
 }
-const FormComponent = ({ fromlabels,tolabels }: FormProps) => {
+const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <Form
         name="basic"
-        labelCol={{ span: 9 }}
+        labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
@@ -32,32 +31,36 @@ const FormComponent = ({ fromlabels,tolabels }: FormProps) => {
         // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        {fromlabels&&fromlabels.map((labels) => {
+        {fromlabels &&
+          fromlabels.map((labels, i) => {
             return (
-              <Form.Item
-                label={labels.label}
-                name={labels.name}
-                rules={[
-                  { required: labels.required, message: labels.message },
-                ]}
-                
-              >
-                <Input />
-              </Form.Item>
+              <div className="px-4" key={i}>
+                <Form.Item
+                  label={labels.label}
+                  name={labels.name}
+                  rules={[
+                    { required: labels.required, message: labels.message },
+                  ]}
+                >
+                  <Input className="flex w-full" />
+                </Form.Item>
+              </div>
             );
           })}
-        {tolabels&&tolabels.map((labels) => {
+        {tolabels &&
+          tolabels.map((labels, i) => {
             return (
-              <Form.Item
-                label={labels.label}
-                name={labels.name}
-                rules={[
-                  { required: labels.required, message: labels.message },
-                ]}
-                
-              >
-                <Input />
-              </Form.Item>
+              <div className="px-4" key={i}>
+                <Form.Item
+                  label={labels.label}
+                  name={labels.name}
+                  rules={[
+                    { required: labels.required, message: labels.message },
+                  ]}
+                >
+                  <Input className="flex w-full" />
+                </Form.Item>
+              </div>
             );
           })}
       </Form>

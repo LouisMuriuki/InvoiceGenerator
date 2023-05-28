@@ -1,4 +1,3 @@
-import React from "react";
 import { DatePicker, Input, Select, Form } from "antd";
 import type { DatePickerProps } from "antd";
 const InvoiceDetails = () => {
@@ -8,6 +7,14 @@ const InvoiceDetails = () => {
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
+  const options = [
+    { value: "none", label: "None" },
+    { value: "receipt", label: "Due on Receipt" }
+  ];
+  
+  for (let i = 1; i <= 20; i++) {
+    options.push({ value: `${i}days`, label: `${i} days` });
+  }
   return (
     <div className="flex flex-col items-start justify-between">
       <div className="flex flex-col gap-2">
@@ -37,20 +44,15 @@ const InvoiceDetails = () => {
             <DatePicker onChange={onChange} />
           </Form.Item>
           <Form.Item
-            label={"terms"}
+            label={"Terms"}
             name={"terms"}
             rules={[{ required: true, message: "Invoice terms is required" }]}
           >
             <Select
-              defaultValue="lucy"
+              defaultValue="None"
               style={{ width: 120 }}
               onChange={handleChange}
-              options={[
-                { value: "jack", label: "Jack" },
-                { value: "lucy", label: "Lucy" },
-                { value: "Yiminghe", label: "yiminghe" },
-                { value: "disabled", label: "Disabled", disabled: true },
-              ]}
+              options={options}
             />
           </Form.Item>
         </Form>
