@@ -5,9 +5,9 @@ import { FormContext } from "../Context/FormContext";
 const InvoiceTop = () => {
   const {
     segmentedoptions,
-    setSegmentedOptions,
     selectedoptions,
     setSelectedOptions,
+    setgenerateInvoiceType,
   } = useContext(FormContext);
 
   return (
@@ -27,14 +27,22 @@ const InvoiceTop = () => {
         <Space wrap>
           <Button
             size={"large"}
-            color="#000"
             type="primary"
             className="flex items-center justify-center"
-            onClick={() => {}}
+            onClick={() => {
+              setgenerateInvoiceType("PDF");
+            }}
           >
             PDF
           </Button>
-          <Button size={"large"} type="primary">
+          <Button
+            size={"large"}
+            type="primary"
+            className="flex items-center justify-center"
+            onClick={() => {
+              setgenerateInvoiceType("Email");
+            }}
+          >
             Email
           </Button>
         </Space>

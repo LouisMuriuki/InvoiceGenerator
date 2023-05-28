@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormComponent from "../Reusables/FormComponent";
+import FormComponent from "../../../../components/Reusables/FormComponent";
 
 const ReceiptientandSender = () => {
   const [fromlabels, setFromLabels] = useState([{

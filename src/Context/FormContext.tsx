@@ -5,6 +5,8 @@ interface FormContextType {
   setSegmentedOptions: React.Dispatch<React.SetStateAction<string[]>>;
   selectedoptions: string;
   setSelectedOptions: React.Dispatch<React.SetStateAction<string>>;
+  generateinvoicetype:string;
+  setgenerateInvoiceType:React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const FormContext = createContext<FormContextType>({
@@ -12,11 +14,14 @@ export const FormContext = createContext<FormContextType>({
   setSegmentedOptions: () => {},
   selectedoptions:"",
   setSelectedOptions: () => {},
+  generateinvoicetype:"",
+   setgenerateInvoiceType: () => {}
 });
 
 const FormContextProvider = ({ children }: any) => {
   const [segmentedoptions, setSegmentedOptions] = useState(["Edit", "Preview"]);
   const [selectedoptions, setSelectedOptions] = useState("Edit");
+  const [generateinvoicetype, setgenerateInvoiceType] = useState("Email");
 
   return (
     <FormContext.Provider
@@ -25,6 +30,7 @@ const FormContextProvider = ({ children }: any) => {
         setSegmentedOptions,
         selectedoptions,
         setSelectedOptions,
+        generateinvoicetype, setgenerateInvoiceType
       }}
     >
       {children}

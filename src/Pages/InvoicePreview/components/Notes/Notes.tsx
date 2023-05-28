@@ -12,10 +12,10 @@ const Notes = () => {
     <div className='flex items-center'>
         <TextArea
       showCount
-      maxLength={100}
+      maxLength={300}
       style={{ height: 120, resize: 'none' }}
       onChange={onChange}
-      placeholder="disable resize"
+      placeholder="Notes- any relevant information not covered, addititonal terms and conditions"
     />
     </div>
   )

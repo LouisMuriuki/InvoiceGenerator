@@ -1,8 +1,9 @@
 import React from "react";
-import Top from "../components/top/Top";
-import ReceiptientandSender from "../components/ReceiptientAnd Sender/ReceiptientandSender";
-import InvoiceDetails from "../components/InvoiceDetails/InvoiceDetails";
-import Notes from "../components/Notes/Notes";
+import Top from "./InvoicePreview/components/top/Top";
+import ReceiptientandSender from "./InvoicePreview/components/ReceiptientAnd Sender/ReceiptientandSender";
+import InvoiceDetails from "./InvoicePreview/components/Details/Details";
+import Notes from "./InvoicePreview/components/Notes/Notes";
+import {Divider} from "antd"
 
 const InvoiceEdit = () => {
   return (
@@ -11,6 +12,7 @@ const InvoiceEdit = () => {
       <div className="flex flex-col p-10">
         <Top />
         <ReceiptientandSender />
+        <Divider/>
         <InvoiceDetails />
         <Notes />
       </div>
