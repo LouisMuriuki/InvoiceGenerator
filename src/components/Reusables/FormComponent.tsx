@@ -1,11 +1,30 @@
 import React from "react";
 import { Form, Input } from "antd";
-const FormComponent = () => {
+interface fromlabels{
+   name: string;
+  label: string;
+  required: boolean;
+  message: string;
+  visible: boolean;
+}
+interface tolabels{
+   name: string;
+  label: string;
+  required: boolean;
+  message: string;
+  visible: boolean;
+}
+interface FormProps {
+  fromlabels?:fromlabels[]
+  tolabels?:tolabels[]
+ 
+}
+const FormComponent = ({ fromlabels,tolabels }: FormProps) => {
   return (
     <div className="flex flex-col">
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 9 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
@@ -13,13 +32,34 @@ const FormComponent = () => {
         // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
-          <Input />
-        </Form.Item>
+        {fromlabels&&fromlabels.map((labels) => {
+            return (
+              <Form.Item
+                label={labels.label}
+                name={labels.name}
+                rules={[
+                  { required: labels.required, message: labels.message },
+                ]}
+                
+              >
+                <Input />
+              </Form.Item>
+            );
+          })}
+        {tolabels&&tolabels.map((labels) => {
+            return (
+              <Form.Item
+                label={labels.label}
+                name={labels.name}
+                rules={[
+                  { required: labels.required, message: labels.message },
+                ]}
+                
+              >
+                <Input />
+              </Form.Item>
+            );
+          })}
       </Form>
     </div>
   );

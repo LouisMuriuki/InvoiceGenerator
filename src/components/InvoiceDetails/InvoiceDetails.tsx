@@ -5,7 +5,7 @@ const InvoiceDetails = () => {
   return (
     <div className='flex flex-col items-start justify-between'>
         <div>
-           <FormComponent/> 
+           {/* <FormComponent/>  */}
         </div>
         <div>
 

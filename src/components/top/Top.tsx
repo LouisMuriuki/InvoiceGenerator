@@ -49,15 +49,15 @@ const Top = () => {
     </div>
   );
   return (
-    <div className="flex flex-row w-full">
-      <div className="flex w-[1/2]">
-        <Input placeholder="Basic usage" size="large" />;
+    <div className="flex flex-row items-center justify-between w-full">
+      <div className="flex items-center justify-center w-max" >
+        <Input placeholder="Invoice" className="" size="large" />
       </div>
-      <div className="flex w-[1/2]">
+      <div className="flex items-center justify-center">
         <Upload
           name="avatar"
           listType="picture-card"
-          className="avatar-uploader"
+          className="avatar-uploader flex justify-center"
           showUploadList={false}
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           beforeUpload={beforeUpload}
