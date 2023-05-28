@@ -1,4 +1,4 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import { Segmented, Button, Space } from "antd";
 import { FormContext } from "../Context/FormContext";
 
@@ -8,7 +8,7 @@ const InvoiceTop = () => {
     selectedoptions,
     setSelectedOptions,
     generateinvoicetype,
-    setgenerateInvoiceType
+    setgenerateInvoiceType,
   } = useContext(FormContext);
 
   return (
@@ -27,10 +27,14 @@ const InvoiceTop = () => {
       </div>
       <div className="">
         <Space wrap>
-        <Button
+          <Button
             size={"large"}
-            type={generateinvoicetype==="Email"?"default":"primary"}
-            className={generateinvoicetype==="Email"?"flex items-center justify-center border-blue-500 text-blue-500":"flex items-center justify-center bg-blue-500 text-white"}
+            type={generateinvoicetype === "Email" ? "default" : "primary"}
+            className={
+              generateinvoicetype === "Email"
+                ? "flex items-center justify-center border-blue-500 text-blue-500"
+                : "flex items-center justify-center bg-blue-500 text-white"
+            }
             onClick={() => {
               setgenerateInvoiceType("Email");
             }}
@@ -39,15 +43,18 @@ const InvoiceTop = () => {
           </Button>
           <Button
             size={"large"}
-            type={generateinvoicetype==="Email"?"primary":"default"}
-            className={generateinvoicetype==="Email"?"flex items-center justify-center bg-blue-500 text-white":"flex items-center justify-center border-blue-500 text-blue-500"}
+            type={generateinvoicetype === "Email" ? "primary" : "default"}
+            className={
+              generateinvoicetype === "Email"
+                ? "flex items-center justify-center bg-blue-500 text-white"
+                : "flex items-center justify-center border-blue-500 text-blue-500"
+            }
             onClick={() => {
               setgenerateInvoiceType("PDF");
             }}
           >
             PDF
           </Button>
-          
         </Space>
       </div>
     </div>

@@ -94,7 +94,7 @@ const ReceiptientandSender = () => {
   {
     name: "address",
     label: "Address",
-    required: true,
+    required: false,
     message: "Please input your Address",
     visible: true,
     placeholder: "123 Main St"
@@ -102,7 +102,7 @@ const ReceiptientandSender = () => {
   {
     name: "city",
     label: "City",
-    required: true,
+    required: false,
     message: "Please input your City",
     visible: true,
     placeholder: "New York"
@@ -110,7 +110,7 @@ const ReceiptientandSender = () => {
   {
     name: "zipcode",
     label: "Zip Code",
-    required: true,
+    required: false,
     message: "Please input your Zip Code",
     visible: true,
     placeholder: "10001"

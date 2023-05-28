@@ -1,4 +1,4 @@
-import { Select, Space } from "antd";
+import { Select, Space ,Divider} from "antd";
 const { Option } = Select;
 
 const handleChange = (value: string[]) => {
@@ -7,6 +7,8 @@ const handleChange = (value: string[]) => {
 const Currency = () => {
   return (
     <div className="flex flex-col">
+      <p className="flex font-semibold">Currency</p>
+      <Divider className="border border-black mt-1" />
       <Select
         style={{ width: "100%" }}
         placeholder="select one country"

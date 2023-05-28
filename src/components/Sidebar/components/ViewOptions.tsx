@@ -1,14 +1,20 @@
-
 import { Divider, Input, Button } from "antd";
 const ViewOptions = () => {
   return (
     <div className="flex flex-col">
-    <p className="font-semibold leading-none">SEND VIA EMAIL</p>
-    <Divider  className="border leading-none border-black p-0" />
-    <Input />
-    <Button type="primary">Send</Button>
-  </div>
-  )
-}
+      <p className="flex font-semibold">SEND VIA EMAIL</p>
+      <Divider className="border border-black mt-1" />
+      <Input placeholder="business@email.com" />
+      <div className="flex items-center justify-center pt-4 w-full ">
+        <Button
+          type="primary"
+          className="flex items-center w-full justify-center bg-blue-500 text-white"
+        >
+          Send
+        </Button>
+      </div>
+    </div>
+  );
+};
 
-export default ViewOptions
+export default ViewOptions;
