@@ -1,4 +1,4 @@
-import React from "react";
+
 import Top from "./components/top/Top";
 import ReceiptientandSender from "./components/ReceiptientAnd Sender/ReceiptientandSender";
 import InvoiceDetails from "./components/Details/Details";

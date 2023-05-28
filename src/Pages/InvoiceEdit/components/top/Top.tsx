@@ -1,9 +1,10 @@
-import React,{useState} from "react";
+import { useState, useContext } from "react";
 import { Input } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import { FormContext } from "../../../../Context/FormContext";
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -23,8 +24,9 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 const Top = () => {
+  const { forminfo,setFormInfo } = useContext(FormContext);
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+ 
 
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
@@ -37,7 +39,7 @@ const Top = () => {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj as RcFile, (url) => {
         setLoading(false);
-        setImageUrl(url);
+        setFormInfo((prev) => ({ ...prev, logo: url }))
       });
     }
   };
@@ -50,30 +52,39 @@ const Top = () => {
   );
   return (
     <div className="flex flex-row items-center w-full">
-    <div className="flex items-center justify-center w-1/2">
-      <Input placeholder="Invoice" className="flex w-[75%]" size="large" />
-    </div>
-    <div className="flex items-center justify-center w-1/2">
-      <div className="flex justify-center"> {/* Add justify-center class here */}
-        <Upload
-          name="avatar"
-          listType="picture-card"
-          className=""
-          showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? (
-            <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-          ) : (
-            uploadButton
-          )}
-        </Upload>
+      <div className="flex items-center justify-center w-1/2">
+        <Input
+          placeholder="Invoice"
+          className="flex w-[75%]"
+          value={forminfo.title}
+          size="large"
+          onChange={(e) => {
+            setFormInfo((prev) => ({ ...prev, title: e.target.value }));
+          }}
+        />
+      </div>
+      <div className="flex items-center justify-center w-1/2">
+        <div className="flex justify-center">
+          {" "}
+          {/* Add justify-center class here */}
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            className=""
+            showUploadList={false}
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {forminfo.logo ? (
+              <img src={forminfo.logo} alt="avatar" style={{ width: "100%" }} />
+            ) : (
+              uploadButton
+            )}
+          </Upload>
+        </div>
       </div>
     </div>
-  </div>
-  
   );
 };
 

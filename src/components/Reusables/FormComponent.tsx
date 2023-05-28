@@ -1,10 +1,12 @@
-import React from "react";
+import { useContext } from "react";
 import { Form, Input } from "antd";
+import { FormContext } from "../../Context/FormContext";
 interface fromlabels {
   name: string;
   label: string;
   required: boolean;
   message: string;
+  placeholder: string;
   visible: boolean;
 }
 interface tolabels {
@@ -12,6 +14,7 @@ interface tolabels {
   label: string;
   required: boolean;
   message: string;
+  placeholder: string;
   visible: boolean;
 }
 interface FormProps {
@@ -19,10 +22,18 @@ interface FormProps {
   tolabels?: tolabels[];
 }
 const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
+  const { setFromdata, setTodata } = useContext(FormContext);
+
+  const FromChange = (name: any, value: any) => {
+    setFromdata((prev) => ({ ...prev, [name]: value }));
+  };
+  const ToChange = (name: any, value: any) => {
+    setTodata((prev) => ({ ...prev, [name]: value }));
+  };
   return (
     <div className="flex flex-col w-full">
       <Form
-        name="basic"
+        name={fromlabels ? "From" : "To"}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
@@ -42,7 +53,13 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
                     { required: labels.required, message: labels.message },
                   ]}
                 >
-                  <Input className="flex w-full" />
+                  <Input
+                    placeholder={labels.placeholder}
+                    className="flex w-full"
+                    onChange={(e) => {
+                      FromChange(labels.name, e.target.value);
+                    }}
+                  />
                 </Form.Item>
               </div>
             );
@@ -58,7 +75,13 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
                     { required: labels.required, message: labels.message },
                   ]}
                 >
-                  <Input className="flex w-full" />
+                  <Input
+                    placeholder={labels.placeholder}
+                    className="flex w-full"
+                    onChange={(e) => {
+                      ToChange(labels.name, e.target.value);
+                    }}
+                  />
                 </Form.Item>
               </div>
             );

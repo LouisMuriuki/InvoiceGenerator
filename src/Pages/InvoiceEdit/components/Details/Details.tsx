@@ -1,17 +1,22 @@
+import { useContext } from "react";
 import { DatePicker, Input, Select, Form } from "antd";
 import type { DatePickerProps } from "antd";
+import { FormContext } from "../../../../Context/FormContext";
 const InvoiceDetails = () => {
+  const { forminfo, setFormInfo } = useContext(FormContext);
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
+    setFormInfo((prev) => ({ ...prev, date: dateString }));
   };
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
+    setFormInfo((prev) => ({ ...prev, terms: value }));
   };
   const options = [
     { value: "none", label: "None" },
-    { value: "receipt", label: "Due on Receipt" }
+    { value: "receipt", label: "Due on Receipt" },
   ];
-  
+
   for (let i = 1; i <= 20; i++) {
     options.push({ value: `${i}days`, label: `${i} days` });
   }
@@ -33,7 +38,13 @@ const InvoiceDetails = () => {
             name={"number"}
             rules={[{ required: true, message: "Invoice Number is required" }]}
           >
-            <Input />
+            <Input
+              placeholder="Invoice001"
+              value={forminfo.number}
+              onChange={(e) => {
+                setFormInfo((prev) => ({ ...prev, number: e.target.value }));
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -51,6 +62,7 @@ const InvoiceDetails = () => {
             <Select
               defaultValue="None"
               style={{ width: 120 }}
+              value={forminfo.terms}
               onChange={handleChange}
               options={options}
             />

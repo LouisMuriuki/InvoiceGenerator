@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Input } from "antd";
+import { FormContext } from "../../../../Context/FormContext";
 
 const { TextArea } = Input;
 
-const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  console.log("Change:", e.target.value);
-};
-
 const Notes = () => {
+  const { forminfo, setFormInfo } = useContext(FormContext);
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log("Change:", e.target.value);
+    setFormInfo((prev) => ({ ...prev, notes: e.target.value }));
+  };
   return (
     <div className="flex flex-col">
       <h2 className="text-lg font-semibold text-gray-700 pb-3">Notes</h2>
       <TextArea
         showCount
+        value={forminfo.notes}
         maxLength={300}
         style={{ height: 120, resize: "none" }}
         onChange={onChange}

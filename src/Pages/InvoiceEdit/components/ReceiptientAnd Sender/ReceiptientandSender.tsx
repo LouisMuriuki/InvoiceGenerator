@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FormComponent from "../../../../components/Reusables/FormComponent";
 
 const ReceiptientandSender = () => {
@@ -7,56 +7,64 @@ const ReceiptientandSender = () => {
     label: "Name",
     required: true,
     message: "Please input your Name",
-    visible: true
+    visible: true,
+    placeholder: "John Doe"
   },
   {
     name: "email",
     label: "Email",
     required: true,
     message: "Please input your Email",
-    visible: true
+    visible: true,
+    placeholder: "example@example.com"
   },
   {
     name: "phone",
     label: "Phone",
     required: false,
     message: "Please input your Phone",
-    visible: true
+    visible: true,
+    placeholder: "(123) 456-7890"
   },
   {
     name: "address",
     label: "Address",
-    required: true,
+    required: false,
     message: "Please input your Address",
-    visible: true
+    visible: true,
+    placeholder: "123 Main St"
   },
   {
     name: "city",
     label: "City",
-    required: true,
+    required: false,
     message: "Please input your City",
-    visible: true
+    visible: true,
+    placeholder: "New York"
   },
   {
     name: "zipcode",
     label: "Zip Code",
-    required: true,
+    required: false,
     message: "Please input your Zip Code",
-    visible: true
+    visible: true,
+    placeholder: "10001"
   },
   {
     name: "website",
     label: "Website",
     required: false,
     message: "Please input your Website",
-    visible: true
+    visible: true,
+    placeholder: "https://www.example.com"
   },
   {
     name: "owner",
     label: "Owner",
-    required: true,
+    required: false,
     message: "Please input the Owner",
-    visible: true
+    visible: true,
+    placeholder: "Business Owner Name"
   }
 ]);
   const [tolabels, setToLabels] = useState([{
@@ -64,50 +72,57 @@ const ReceiptientandSender = () => {
     label: "Name",
     required: true,
     message: "Please input your Name",
-    visible: true
+    visible: true,
+    placeholder: "John Doe"
   },
   {
     name: "email",
     label: "Email",
     required: true,
     message: "Please input your Email",
-    visible: true
+    visible: true,
+    placeholder: "example@example.com"
   },
   {
     name: "phone",
     label: "Phone",
     required: false,
     message: "Please input your Phone",
-    visible: true
+    visible: true,
+    placeholder: "(123) 456-7890"
   },
   {
     name: "address",
     label: "Address",
     required: true,
     message: "Please input your Address",
-    visible: true
+    visible: true,
+    placeholder: "123 Main St"
   },
   {
     name: "city",
     label: "City",
     required: true,
     message: "Please input your City",
-    visible: true
+    visible: true,
+    placeholder: "New York"
   },
   {
     name: "zipcode",
     label: "Zip Code",
     required: true,
     message: "Please input your Zip Code",
-    visible: true
+    visible: true,
+    placeholder: "10001"
   },
   {
     name: "website",
     label: "Website",
     required: false,
     message: "Please input your Website",
-    visible: true
-  },
+    visible: true,
+    placeholder: "https://www.example.com"
+  }
   
 ]);
   return (
