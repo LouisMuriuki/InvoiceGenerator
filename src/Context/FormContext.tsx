@@ -30,6 +30,22 @@ interface FormInfo {
   terms: string;
   notes: string;
 }
+interface Description {
+  description: string;
+  rate: string;
+  qty: string;
+  amount: number;
+  tax: number;
+  additional: string;
+}
+const initialdescription:Description={
+  description:"",
+  rate:"",
+  qty:"",
+  amount:0,
+  tax:0,
+  additional:""
+}
 const initialFormInfo: FormInfo = {
   title: "",
   logo: "",
@@ -71,6 +87,8 @@ interface FormContextType {
   setTodata: React.Dispatch<React.SetStateAction<ToData>>;
   forminfo: FormInfo;
   setFormInfo: React.Dispatch<React.SetStateAction<FormInfo>>;
+  description:Description[], 
+  setDescription:React.Dispatch<React.SetStateAction<Description[]>>;
 }
 
 export const FormContext = createContext<FormContextType>({
@@ -86,6 +104,8 @@ export const FormContext = createContext<FormContextType>({
   setTodata: () => {},
   forminfo: initialFormInfo,
   setFormInfo: () => {},
+  description:[],
+  setDescription: () => {},
 });
 
 const FormContextProvider = ({ children }: any) => {
@@ -95,6 +115,7 @@ const FormContextProvider = ({ children }: any) => {
   const [fromdata, setFromdata] = useState(initialFromData);
   const [todata, setTodata] = useState(initialToData);
   const [forminfo, setFormInfo] = useState(initialFormInfo);
+  const [description, setDescription] = useState([initialdescription]);
 
   return (
     <FormContext.Provider
@@ -111,6 +132,8 @@ const FormContextProvider = ({ children }: any) => {
         setTodata,
         forminfo,
         setFormInfo,
+        description, 
+        setDescription
       }}
     >
       {children}

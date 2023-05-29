@@ -4,6 +4,7 @@ import ReceiptientandSender from "./components/ReceiptientAnd Sender/Receiptient
 import InvoiceDetails from "./components/Details/Details";
 import Notes from "./components/Notes/Notes";
 import {Divider} from "antd"
+import Description from "./components/Description/Description";
 
 const InvoiceEdit = () => {
   return (
@@ -14,6 +15,7 @@ const InvoiceEdit = () => {
         <ReceiptientandSender />
         <Divider/>
         <InvoiceDetails />
+        <Description/>
         <Notes />
       </div>
     </div>

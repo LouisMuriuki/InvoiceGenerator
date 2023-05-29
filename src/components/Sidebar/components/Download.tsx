@@ -4,7 +4,7 @@ const Download = () => {
     <div className="flex flex-col">
       <p className="flex font-semibold">DOWNLOAD PDF</p>
       <Divider className="border border-black mt-1" />
-      <p>Download this Invoice as pdf document</p>
+      <p>Download PDF document</p>
       <div className="flex items-center justify-center pt-4 w-full ">
         <Button
           type="primary"
