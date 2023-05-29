@@ -32,22 +32,24 @@ interface FormInfo {
 }
 interface Description {
   description: string;
-  rate: string;
-  qty: string;
+  rate: number;
+  qty: number;
   amount: number;
-  tax: number;
+  tax:Boolean
+  taxrate: number;
   additional: string;
 }
 const initialdescription:Description={
   description:"",
-  rate:"",
-  qty:"",
+  rate:0,
+  qty:0,
   amount:0,
-  tax:0,
+  tax:false,
+  taxrate:0,
   additional:""
 }
 const initialFormInfo: FormInfo = {
-  title: "",
+  title: "Invoice",
   logo: "",
   number: "",
   date: "",

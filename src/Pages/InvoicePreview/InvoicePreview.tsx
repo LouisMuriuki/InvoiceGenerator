@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { FormContext } from "../../Context/FormContext";
-
+import { Divider } from "antd";
 const InvoicePreview = () => {
-  const { forminfo, todata, fromdata } = useContext(FormContext);
+  const { forminfo, todata, fromdata, description } = useContext(FormContext);
   return (
-    <div className="flex flex-col bg-white w-full h-auto p-4 md:p-10 shadow-md">
+    <div className="flex flex-col bg-white w-full h-auto p-4 md:p-10 shadow-lg">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-start">
           <img
@@ -55,22 +55,44 @@ const InvoicePreview = () => {
         </div>
       </div>
       <hr className="h-px my-8 bg-gray-200 border-1 w-full dark:bg-gray-700" />
-      <table className="w-full mb-6">
-        <thead>
-          <tr>
-            <th className="text-left  font-bold">PACKAGE</th>
-            <th className="text-left  font-bold">PRICE</th>
-            <th className="text-left  font-bold">TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{}</td>
-            <td>{}</td>
-            <td>{}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="border border-t-stone-950 border-b-stone-950 grid grid-cols-12 py-1 mb-3">
+        <div className="col-span-6">
+          <h5>Description</h5>
+        </div>
+        <div className="col-span-2">
+          <h5 className="flex items-center justify-end">Rate</h5>
+        </div>
+        <div className="col-span-2">
+          <h5 className="flex items-center justify-end">Qty</h5>
+        </div>
+        <div className="col-span-2">
+          <h5 className="flex items-center justify-end">Amount</h5>
+        </div>
+      </div>
+      {description.map((desc, i) => {
+        return (
+          <>
+            <div className="grid grid-cols-12 gap-1">
+              <div className="col-span-6">
+                <div className="grid-rows-2">
+                  <p>{desc?.description}</p>
+                  <p>{desc?.additional}</p>
+                </div>
+              </div>
+              <div className="flex  justify-end col-span-2">
+                <p>{desc?.rate}</p>
+              </div>
+              <div className="flex  justify-end col-span-2">
+                <p>{desc?.qty}</p>
+              </div>
+              <div className="flex  justify-end col-span-2">
+                <h5>{desc?.qty * desc?.rate}</h5>
+              </div>
+            </div>{" "}
+            <Divider dashed />
+          </>
+        );
+      })}
       <div className="flex justify-end">
         <div className="md:w-1/3 pl-12">
           <table className="w-full mb-6">
@@ -91,13 +113,15 @@ const InvoicePreview = () => {
           </table>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <p>
-          Kindly pay your invoice within{forminfo.terms}
-          days.
+      <div className=" flex w-full mb-10">
+        {forminfo.notes}
+      </div>
+      <div className="flex flex-col justify-center items-center font-bold">
+        <p className="">
+          Kindly pay your invoice{" "}
+          {forminfo.terms === "None" ? "Today" : `within ${forminfo.terms} `}
         </p>
         <p className="mb-2">Thank you !</p>
-        <p>MGENI KARIBU</p>
       </div>
     </div>
   );

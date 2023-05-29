@@ -16,8 +16,7 @@ const Notes = () => {
       <TextArea
         showCount
         value={forminfo.notes}
-        maxLength={300}
-        style={{ height: 120, resize: "none" }}
+        style={{ height: 200, resize: "none" }}
         onChange={onChange}
         placeholder="Notes- any relevant information not covered, addititonal terms and conditions"
       />

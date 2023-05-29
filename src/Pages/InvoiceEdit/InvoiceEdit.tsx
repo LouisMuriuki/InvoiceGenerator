@@ -8,7 +8,7 @@ import Description from "./components/Description/Description";
 
 const InvoiceEdit = () => {
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white shadow-lg">
       <div className="bg-blue-600 w-full h-[4px]"></div>
       <div className="flex flex-col py-10 px-3">
         <Top />
