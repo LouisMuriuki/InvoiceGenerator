@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 
 interface FromData {
+  [key: string]: string;
   name: string;
   email: string;
   phone: string;
@@ -11,6 +12,7 @@ interface FromData {
   owner: string;
 }
 interface ToData {
+  [key: string]: string;
   name: string;
   email: string;
   phone: string;
@@ -33,7 +35,7 @@ const initialFormInfo: FormInfo = {
   logo: "",
   number: "",
   date: "",
-  terms: "",
+  terms: "None",
   notes: "",
 };
 const initialFromData: FromData = {

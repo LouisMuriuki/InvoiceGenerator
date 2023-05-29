@@ -22,7 +22,7 @@ interface FormProps {
   tolabels?: tolabels[];
 }
 const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
-  const { setFromdata, setTodata } = useContext(FormContext);
+  const { fromdata, todata, setFromdata, setTodata } = useContext(FormContext);
 
   const FromChange = (name: any, value: any) => {
     setFromdata((prev) => ({ ...prev, [name]: value }));
@@ -44,8 +44,9 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
       >
         {fromlabels &&
           fromlabels.map((labels, i) => {
+            console.log(fromdata[labels.name]);
             return (
-              <div className="px-4" key={i}>
+              <div key={i}>
                 <Form.Item
                   label={labels.label}
                   name={labels.name}
@@ -56,6 +57,7 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
                   <Input
                     placeholder={labels.placeholder}
                     className="flex w-full"
+                    defaultValue={fromdata &&fromdata[labels?.name]}
                     onChange={(e) => {
                       FromChange(labels.name, e.target.value);
                     }}
@@ -67,7 +69,7 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
         {tolabels &&
           tolabels.map((labels, i) => {
             return (
-              <div className="px-4" key={i}>
+              <div key={i}>
                 <Form.Item
                   label={labels.label}
                   name={labels.name}
@@ -78,6 +80,7 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
                   <Input
                     placeholder={labels.placeholder}
                     className="flex w-full"
+                    defaultValue={todata &&todata[labels?.name]}
                     onChange={(e) => {
                       ToChange(labels.name, e.target.value);
                     }}

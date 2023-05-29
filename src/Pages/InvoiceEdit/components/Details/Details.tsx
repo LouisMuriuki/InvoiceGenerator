@@ -21,55 +21,58 @@ const InvoiceDetails = () => {
     options.push({ value: `${i}days`, label: `${i} days` });
   }
   return (
-    <div className="flex flex-col items-start justify-between">
-      <div className="flex flex-col gap-2">
-        <Form
-          name="basic"
-          labelCol={{ span: 9 }}
-          wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
-          // onFinish={onFinish}
-          // onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item
-            label={"Number"}
-            name={"number"}
-            rules={[{ required: true, message: "Invoice Number is required" }]}
+    <div className="flex w-full">
+      <div className="flex items-start flex-col w-1/2 px-4">
+        <div className="flex flex-col w-full">
+          <Form
+            name="details"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            style={{ maxWidth: 600 }}
+            initialValues={{ remember: true }}
+            // onFinish={onFinish}
+            // onFinishFailed={onFinishFailed}
+            autoComplete="off"
           >
-            <Input
-              placeholder="Invoice001"
-              value={forminfo.number}
-              onChange={(e) => {
-                setFormInfo((prev) => ({ ...prev, number: e.target.value }));
-              }}
-            />
-          </Form.Item>
+            <Form.Item
+              label={"Number"}
+              name={"number"}
+              rules={[
+                { required: true, message: "Invoice Number is required" },
+              ]}
+            >
+              <Input
+                placeholder="Invoice001"
+                defaultValue={forminfo.number}
+                onChange={(e) => {
+                  setFormInfo((prev) => ({ ...prev, number: e.target.value }));
+                }}
+              />
+            </Form.Item>
 
-          <Form.Item
-            label={"Date"}
-            name={"date"}
-            rules={[{ required: true, message: "Date is required" }]}
-          >
-            <DatePicker onChange={onChange} />
-          </Form.Item>
-          <Form.Item
-            label={"Terms"}
-            name={"terms"}
-            rules={[{ required: true, message: "Invoice terms is required" }]}
-          >
-            <Select
-              defaultValue="None"
-              style={{ width: 120 }}
-              value={forminfo.terms}
-              onChange={handleChange}
-              options={options}
-            />
-          </Form.Item>
-        </Form>
+            <Form.Item
+              label={"Date"}
+              className="w-full"
+              name={"date"}
+              rules={[{ required: true, message: "Date is required" }]}
+            >
+              <DatePicker className="w-full" onChange={onChange} />
+            </Form.Item>
+            <Form.Item
+              label={"Terms"}
+              name={"terms"}
+              rules={[{ required: true, message: "Invoice terms is required" }]}
+            >
+              <Select
+                defaultValue={forminfo.terms}
+                onChange={handleChange}
+                options={options}
+              />
+            </Form.Item>
+          </Form>
+        </div>
       </div>
-      <div></div>
+      <div className="flex items-start flex-col w-1/2"></div>
     </div>
   );
 };

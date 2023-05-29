@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import ViewOptions from "./components/ViewOptions";
 import Currency from "./components/Currency";
 import Tax from "./components/Tax";
+import { FormContext } from "../../Context/FormContext";
+import Download from "./components/Download";
 
 const SideBar = () => {
+  const { generateinvoicetype } = useContext(FormContext);
   return (
     <div className="flex flex-col py-16 px-4">
       <div className="mb-10">
-        <ViewOptions />
+        {generateinvoicetype === "Email" ? <ViewOptions /> : <Download />}
       </div>
       <div className="mb-10">
         <Tax />
