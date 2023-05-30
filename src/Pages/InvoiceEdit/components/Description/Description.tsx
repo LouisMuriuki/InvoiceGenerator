@@ -17,10 +17,17 @@ const Description = () => {
     };
     setDescription((prev) => [...prev, newfield]);
   };
+
+  const handleRemoveDescription = (index: number) => {
+    const updatedDescriptions = [...description]; // create a copy of the array
+    updatedDescriptions.splice(index, 1); // modify the copy by removing the description
+
+    setDescription(updatedDescriptions); // update the state with the modified array
+  };
   console.log(description);
   return (
     <div className="">
-      <div className="border border-t-stone-950 border-b-stone-950 grid grid-cols-12 py-1 mb-3">
+      <div className="border border-y-stone-950 border-x-white  grid grid-cols-12 p-1 mb-3">
         <div className="col-span-5">
           <h5>Description</h5>
         </div>
@@ -40,14 +47,22 @@ const Description = () => {
       {description.map((desc, i) => {
         return (
           <div className="flex items-start flex-row mb-5" key={i}>
-            <Button
+            <div className="">
+                 <Button
               type="primary"
-              className="flex min-w-max items-center justify-center bg-blue-500 text-white mt-1 mr-1"
+              danger
+              className="flex items-center w-10 justify-center bg-blue-500 text-white mt-1 mr-2"
               icon={<CloseOutlined />}
+              style={{ width: '100%' }}
+              onClick={() => {
+                handleRemoveDescription(i);
+              }}
               size="small"
             />
+                </div>
+           
             <div className="grid grid-cols-12 gap-1">
-              <div className="col-span-5">
+              <div className="col-span-5 ml-2">
                 <div className="grid-rows-2">
                   <div className="mb-2">
                     <Input
@@ -82,10 +97,10 @@ const Description = () => {
                   />
                 </div>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2  ml-10">
                 <Input
                   placeholder="0.00"
-                  value={desc?.rate}
+                  value={(desc?.rate).toLocaleString()}
                   onChange={(e) => {
                     setDescription((prev) => {
                       return prev.map((item, index) => {
@@ -98,7 +113,7 @@ const Description = () => {
                   }}
                 />
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2 ml-10">
                 <Input
                   placeholder="1"
                   value={desc?.qty}
@@ -115,7 +130,7 @@ const Description = () => {
                 />
               </div>
               <div className="flex justify-end col-span-2">
-                <h5>{desc?.qty * desc?.rate}</h5>
+                <h5>{(desc?.qty * desc?.rate).toLocaleString()}</h5>
               </div>
               <div className="flex justify-end col-span-1">
                 <Checkbox
@@ -144,7 +159,7 @@ const Description = () => {
         onClick={handleAddField}
         size="small"
       />
-      <Divider/>
+      <Divider />
     </div>
   );
 };

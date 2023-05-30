@@ -58,14 +58,7 @@ const ReceiptientandSender = () => {
     visible: true,
     placeholder: "https://www.example.com"
   },
-  {
-    name: "owner",
-    label: "Owner",
-    required: false,
-    message: "Please input the Owner",
-    visible: true,
-    placeholder: "Business Owner Name"
-  }
+ 
 ]);
   const [tolabels, setToLabels] = useState([{
     name: "name",
