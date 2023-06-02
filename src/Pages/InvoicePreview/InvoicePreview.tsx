@@ -1,25 +1,27 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { FormContext } from "../../Context/FormContext";
 import { Divider } from "antd";
 import dayjs from "dayjs";
 import "dayjs/locale/en";
+
 const InvoicePreview = () => {
   let number = [0];
-  const [total, setTotal] = useState();
   const { forminfo, todata, fromdata, description } = useContext(FormContext);
-  number =
-    forminfo?.terms === "none" ? [0] : forminfo?.terms?.match(/\d+/g) || [];
+  number = forminfo?.terms === "none" ? [0] : (forminfo?.terms?.match(/\d+/g) || []).map(Number);
   console.log(number);
   const formattedDate = dayjs(forminfo?.date).format("dddd, MMMM DD, YYYY");
   const formattedDueDate = dayjs(forminfo?.date)
     .add(+number[0], "day")
     .format("dddd, MMMM DD, YYYY");
+
+  
+
   return (
     <div className="flex flex-col bg-white w-full h-auto p-4 md:p-10 shadow-lg">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-start">
           <img
-            src={""}
+            src={forminfo.logo}
             alt="Invoice logo"
             className="w-[80px] md:w-[120px] mr-4 flex items-start "
           />
@@ -42,8 +44,7 @@ const InvoicePreview = () => {
           <h3 className="text-base font-bold mb-2">BILLED TO:</h3>
 
           <div>
-            <p className="mb-1 font-bold">{todata?.owner}</p>
-            <p className="mb-1">{todata?.name}</p>
+            <p className="mb-1 font-bold">{todata?.name}</p>
             <p className="mb-1">{todata?.phone}</p>
             <p className="mb-1">{todata?.email}</p>
             <p className="mb-1">{todata?.address}</p>
@@ -69,16 +70,19 @@ const InvoicePreview = () => {
       <hr className="h-px my-8 bg-gray-200 border-1 w-full dark:bg-gray-700" />
       <div className="border border-y-stone-950 border-x-white  grid grid-cols-12 p-1 mb-3">
         <div className="col-span-6">
-          <h5>Description</h5>
+          <h5 className="font-bold">Description</h5>
         </div>
         <div className="col-span-2">
-          <h5 className="flex items-center justify-end">Rate</h5>
+          <h5 className="flex items-center justify-end font-bold">Quantity</h5>
         </div>
         <div className="col-span-2">
-          <h5 className="flex items-center justify-end">Qty</h5>
+          <h5 className="flex items-center justify-end font-bold">
+            Price/Rate
+          </h5>
         </div>
+
         <div className="col-span-2">
-          <h5 className="flex items-center justify-end">Amount</h5>
+          <h5 className="flex items-center justify-end font-bold">Amount</h5>
         </div>
       </div>
       {description.map((desc, i) => {
@@ -92,10 +96,10 @@ const InvoicePreview = () => {
                 </div>
               </div>
               <div className="flex  justify-end col-span-2">
-                <p>{(desc?.rate).toLocaleString()}</p>
+                <p>{desc?.qty}</p>
               </div>
               <div className="flex  justify-end col-span-2">
-                <p>{desc?.qty}</p>
+                <p>{(desc?.rate).toLocaleString()}</p>
               </div>
               <div className="flex  justify-end col-span-2">
                 <h5>{(desc?.qty * desc?.rate).toLocaleString()}</h5>

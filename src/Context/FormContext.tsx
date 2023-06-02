@@ -9,7 +9,7 @@ interface FromData {
   city: string;
   zipcode: string;
   website: string;
-  owner: string;
+  country: string;
 }
 interface ToData {
   [key: string]: string;
@@ -20,7 +20,7 @@ interface ToData {
   city: string;
   zipcode: string;
   website: string;
-  owner: string;
+  country: string;
 }
 interface FormInfo {
   title: string;
@@ -80,7 +80,7 @@ const initialFromData: FromData = {
   city: "",
   zipcode: "",
   website: "",
-  owner: "",
+  country: "",
 };
 const initialToData: ToData = {
   name: "",
@@ -90,7 +90,7 @@ const initialToData: ToData = {
   city: "",
   zipcode: "",
   website: "",
-  owner: "",
+  country: "",
 };
 interface FormContextType {
   segmentedoptions: string[];

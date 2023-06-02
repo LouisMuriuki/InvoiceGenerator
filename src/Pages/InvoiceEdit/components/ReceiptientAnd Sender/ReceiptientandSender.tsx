@@ -43,6 +43,14 @@ const ReceiptientandSender = () => {
     placeholder: "New York"
   },
   {
+    name: "country",
+    label: "Country",
+    required: false,
+    message: "Please input your Country",
+    visible: true,
+    placeholder: "Kenya"
+  },
+  {
     name: "zipcode",
     label: "Zip Code",
     required: false,
@@ -99,6 +107,14 @@ const ReceiptientandSender = () => {
     message: "Please input your City",
     visible: true,
     placeholder: "New York"
+  },
+  {
+    name: "country",
+    label: "Country",
+    required: false,
+    message: "Please input your Country",
+    visible: true,
+    placeholder: "Kenya"
   },
   {
     name: "zipcode",

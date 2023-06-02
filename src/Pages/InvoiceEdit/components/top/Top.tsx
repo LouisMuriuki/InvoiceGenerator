@@ -2,15 +2,9 @@ import { useState, useContext } from "react";
 import { Input } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
-import type { UploadChangeParam } from "antd/es/upload";
-import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
+import axios from "axios";
+import type { RcFile } from "antd/es/upload/interface";
 import { FormContext } from "../../../../Context/FormContext";
-
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
 
 const beforeUpload = (file: RcFile) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -24,24 +18,35 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 const Top = () => {
-  const { forminfo,setFormInfo } = useContext(FormContext);
+  const { forminfo, setFormInfo } = useContext(FormContext);
   const [loading, setLoading] = useState(false);
- 
 
-  const handleChange: UploadProps["onChange"] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
+  const handleChange = async (options: any) => {
+    const { onSuccess, onError, file } = options;
+    if (!file) {
+      console.error("No file selected");
       return;
     }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
+    setLoading(true);
+    console.log(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "yq8wrg8p");
+    axios
+      .post("https://api.cloudinary.com/v1_1/dbi34vmol/image/upload", formData)
+      .then((res) => {
+        console.log(res);
+        onSuccess(res?.data);
+        setFormInfo((prev) => ({ ...prev, logo: res?.data?.url }));
+      })
+      .catch((error) => {
+        // Handle error case
+        onError(error);
+        console.error("Upload failed");
+      })
+      .finally(() => {
         setLoading(false);
-        setFormInfo((prev) => ({ ...prev, logo: url }))
       });
-    }
   };
 
   const uploadButton = (
@@ -73,8 +78,8 @@ const Top = () => {
             className=""
             showUploadList={false}
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            customRequest={handleChange}
             beforeUpload={beforeUpload}
-            onChange={handleChange}
           >
             {forminfo.logo ? (
               <img src={forminfo.logo} alt="avatar" style={{ width: "100%" }} />

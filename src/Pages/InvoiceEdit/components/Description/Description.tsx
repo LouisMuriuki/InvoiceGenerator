@@ -1,10 +1,10 @@
-import { Input, Divider, Button, Checkbox } from "antd";
+import { Input, Divider, Button } from "antd";
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FormContext } from "../../../../Context/FormContext";
 const { TextArea } = Input;
 const Description = () => {
-  const { description,forminfo, setDescription } = useContext(FormContext);
+  const { description, setDescription } = useContext(FormContext);
   const handleAddField = () => {
     const newfield = {
       description: "",
