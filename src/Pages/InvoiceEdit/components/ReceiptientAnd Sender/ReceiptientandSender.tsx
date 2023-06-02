@@ -1,8 +1,5 @@
-import { useState } from "react";
 import FormComponent from "../../../../components/Reusables/FormComponent";
-
-const ReceiptientandSender = () => {
-  const [fromlabels, setFromLabels] = useState([{
+const fromlabels=[{
     name: "name",
     label: "Name",
     required: true,
@@ -67,8 +64,8 @@ const ReceiptientandSender = () => {
     placeholder: "https://www.example.com"
   },
  
-]);
-  const [tolabels, setToLabels] = useState([{
+];
+  const tolabels=[{
     name: "name",
     label: "Name",
     required: true,
@@ -133,7 +130,9 @@ const ReceiptientandSender = () => {
     placeholder: "https://www.example.com"
   }
   
-]);
+];
+const ReceiptientandSender = () => {
+  
   return (
     <div className="flex w-full ">
       <div className="flex items-start flex-col w-1/2 px-4">
