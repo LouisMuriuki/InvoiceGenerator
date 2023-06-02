@@ -1,10 +1,19 @@
 import { useContext, useState } from "react";
 import { FormContext } from "../../Context/FormContext";
 import { Divider } from "antd";
+import dayjs from "dayjs";
+import "dayjs/locale/en";
 const InvoicePreview = () => {
+  let number = [0];
   const [total, setTotal] = useState();
   const { forminfo, todata, fromdata, description } = useContext(FormContext);
-
+  number =
+    forminfo?.terms === "none" ? [0] : forminfo?.terms?.match(/\d+/g) || [];
+  console.log(number);
+  const formattedDate = dayjs(forminfo?.date).format("dddd, MMMM DD, YYYY");
+  const formattedDueDate = dayjs(forminfo?.date)
+    .add(+number[0], "day")
+    .format("dddd, MMMM DD, YYYY");
   return (
     <div className="flex flex-col bg-white w-full h-auto p-4 md:p-10 shadow-lg">
       <div className="flex justify-between items-center mb-6">
@@ -49,11 +58,11 @@ const InvoicePreview = () => {
           </div>
           <div className="flex mb-1">
             <h3 className="font-bold mr-2">INVOICE DATE:</h3>
-            <p>{forminfo.date}</p>
+            <p>{forminfo.date ? formattedDate : null}</p>
           </div>
           <div className="flex mb-1">
             <h3 className="font-bold mr-2">DUE DATE:</h3>
-            <p>{}</p>
+            <p>{forminfo.date ? formattedDueDate : null}</p>
           </div>
         </div>
       </div>
@@ -74,7 +83,7 @@ const InvoicePreview = () => {
       </div>
       {description.map((desc, i) => {
         return (
-          <>
+          <div key={i}>
             <div className="grid grid-cols-12 gap-1">
               <div className="col-span-6">
                 <div className="grid-rows-2">
@@ -93,7 +102,7 @@ const InvoicePreview = () => {
               </div>
             </div>{" "}
             <Divider dashed />
-          </>
+          </div>
         );
       })}
       <div className="grid grid-cols-12 gap-1">
@@ -112,7 +121,12 @@ const InvoicePreview = () => {
           <div className="grid-rows-2">
             <p>KSH {forminfo.subTotal}</p>
             <p>KSH {`${forminfo.mainTax}.00%`}</p>
-            <p>KSH {forminfo?.discountType==="amount"?forminfo.discount:`${forminfo.discount}.00%`}</p>
+            <p>
+              KSH{" "}
+              {forminfo?.discountType === "amount"
+                ? forminfo.discount
+                : `${forminfo.discount}.00%`}
+            </p>
             <p className="font-bold">KSH {forminfo.total?.toLocaleString()}</p>
           </div>
         </div>
@@ -121,7 +135,7 @@ const InvoicePreview = () => {
       <div className="flex flex-col justify-center items-center font-bold">
         <p className="mb-4">
           Kindly pay your invoice{" "}
-          {forminfo.terms === "None" ? "Today" : `within ${forminfo.terms} `}
+          {forminfo.terms === "none" ? "Today" : `within ${forminfo.terms} `}
         </p>
         <p className="mb-2">Thank you !</p>
       </div>

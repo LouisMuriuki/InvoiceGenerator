@@ -2,11 +2,19 @@ import { useContext } from "react";
 import { DatePicker, Input, Select, Form } from "antd";
 import type { DatePickerProps } from "antd";
 import { FormContext } from "../../../../Context/FormContext";
+import dayjs from "dayjs";
+let dateString = new Date().toLocaleDateString();
+let dateParts = dateString.split("/");
+let year = dateParts[2];
+let month = dateParts[0].length === 1 ? "0" + dateParts[0] : dateParts[0];
+let day = dateParts[1].length === 1 ? "0" + dateParts[1] : dateParts[1];
+let formattedDate = year + "/" + month + "/" + day;
 const InvoiceDetails = () => {
   const { forminfo, setFormInfo } = useContext(FormContext);
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
-    setFormInfo((prev) => ({ ...prev, date: dateString }));
+    //@ts-ignore
+    setFormInfo((prev) => ({ ...prev, date: date?.$d }));
   };
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -56,7 +64,7 @@ const InvoiceDetails = () => {
               name={"date"}
               rules={[{ required: true, message: "Date is required" }]}
             >
-              <DatePicker className="w-full" onChange={onChange} />
+              <DatePicker className="w-full" value={dayjs(formattedDate, 'YYYY-MM-DD')} onChange={onChange} />
             </Form.Item>
             <Form.Item
               label={"Terms"}

@@ -41,7 +41,7 @@ const Description = () => {
           <h5 className="flex items-center justify-end">Amount</h5>
         </div>
         <div className="col-span-1">
-          <h5 className="flex items-center justify-end">Tax</h5>
+          {/* <h5 className="flex items-center justify-end">Tax</h5> */}
         </div>
       </div>
       {description.map((desc, i) => {
@@ -133,7 +133,7 @@ const Description = () => {
                 <h5>{(desc?.qty * desc?.rate).toLocaleString()}</h5>
               </div>
               <div className="flex justify-end col-span-1">
-                <Checkbox
+                {/* <Checkbox
                   onChange={(e) => {
                     setDescription((prev) => {
                       return prev.map((item, index) => {
@@ -144,7 +144,7 @@ const Description = () => {
                       });
                     });
                   }}
-                ></Checkbox>
+                ></Checkbox> */}
               </div>
             </div>
           </div>
