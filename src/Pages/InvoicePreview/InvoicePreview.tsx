@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "../../Context/FormContext";
 import { Divider } from "antd";
 const InvoicePreview = () => {
+  const [total, setTotal] = useState();
   const { forminfo, todata, fromdata, description } = useContext(FormContext);
+
   return (
     <div className="flex flex-col bg-white w-full h-auto p-4 md:p-10 shadow-lg">
       <div className="flex justify-between items-center mb-6">
@@ -27,18 +29,18 @@ const InvoicePreview = () => {
       </div>
       <hr className="h-px my-8 bg-gray-200 border-1 w-full dark:bg-gray-700" />
       <div className="flex justify-between mb-6">
-      <div className="flex flex-col">
-        <h3 className="text-base font-bold mb-2">BILLED TO:</h3>
-      
-        <div>
-          <p className="mb-1 font-bold">{todata?.owner}</p>
-          <p className="mb-1">{todata?.name}</p>
-          <p className="mb-1">{todata?.phone}</p>
-          <p className="mb-1">{todata?.email}</p>
-          <p className="mb-1">{todata?.address}</p>
-          <p className="mb-1">{todata?.city}</p>
-          <p className="mb-1">{todata?.website}</p>
-        </div>
+        <div className="flex flex-col">
+          <h3 className="text-base font-bold mb-2">BILLED TO:</h3>
+
+          <div>
+            <p className="mb-1 font-bold">{todata?.owner}</p>
+            <p className="mb-1">{todata?.name}</p>
+            <p className="mb-1">{todata?.phone}</p>
+            <p className="mb-1">{todata?.email}</p>
+            <p className="mb-1">{todata?.address}</p>
+            <p className="mb-1">{todata?.city}</p>
+            <p className="mb-1">{todata?.website}</p>
+          </div>
         </div>
         <div className="flex flex-col">
           <div className="flex mb-1">
@@ -99,15 +101,19 @@ const InvoicePreview = () => {
         <div className="flex justify-end col-span-2">
           <div className="grid-rows-2">
             <p>Sub-total</p>
-            <p>Tax ({}%)</p>
+            <p>
+              {forminfo.taxLabel} ({}%)
+            </p>
+            <p>Discount</p>
             <p>Total</p>
           </div>
         </div>
         <div className="flex  justify-end col-span-2">
           <div className="grid-rows-2">
-            <p>KSH {}</p>
-            <p>KSH {}</p>
-            <p className="font-bold">KSH {}</p>
+            <p>KSH {forminfo.subTotal}</p>
+            <p>KSH {`${forminfo.mainTax}.00%`}</p>
+            <p>KSH {forminfo?.discountType==="amount"?forminfo.discount:`${forminfo.discount}.00%`}</p>
+            <p className="font-bold">KSH {forminfo.total?.toLocaleString()}</p>
           </div>
         </div>
       </div>

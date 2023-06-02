@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 interface FromData {
   [key: string]: string;
@@ -29,32 +29,48 @@ interface FormInfo {
   date: string;
   terms: string;
   notes: string;
+  discountType: string;
+  discount: number;
+  total: number;
+  subTotal: number;
+  taxLabel: string;
+  taxType: string;
+  mainTax: number;
+  currency:string
 }
 interface Description {
   description: string;
   rate: number;
   qty: number;
   amount: number;
-  tax:Boolean
+  tax: Boolean;
   taxrate: number;
   additional: string;
 }
-const initialdescription:Description={
-  description:"",
-  rate:0,
-  qty:0,
-  amount:0,
-  tax:false,
-  taxrate:0,
-  additional:""
-}
+const initialdescription: Description = {
+  description: "",
+  rate: 0,
+  qty: 0,
+  amount: 0,
+  tax: false,
+  taxrate: 0,
+  additional: "",
+};
 const initialFormInfo: FormInfo = {
   title: "Invoice",
   logo: "",
   number: "",
   date: "",
-  terms: "None",
+  terms: "none",
   notes: "",
+  discountType: "none",
+  discount: 0,
+  taxLabel: "Tax",
+  taxType: "none",
+  mainTax: 0,
+  total: 0,
+  subTotal: 0,
+  currency:""
 };
 const initialFromData: FromData = {
   name: "",
@@ -89,8 +105,8 @@ interface FormContextType {
   setTodata: React.Dispatch<React.SetStateAction<ToData>>;
   forminfo: FormInfo;
   setFormInfo: React.Dispatch<React.SetStateAction<FormInfo>>;
-  description:Description[], 
-  setDescription:React.Dispatch<React.SetStateAction<Description[]>>;
+  description: Description[];
+  setDescription: React.Dispatch<React.SetStateAction<Description[]>>;
 }
 
 export const FormContext = createContext<FormContextType>({
@@ -106,7 +122,7 @@ export const FormContext = createContext<FormContextType>({
   setTodata: () => {},
   forminfo: initialFormInfo,
   setFormInfo: () => {},
-  description:[],
+  description: [],
   setDescription: () => {},
 });
 
@@ -119,6 +135,26 @@ const FormContextProvider = ({ children }: any) => {
   const [forminfo, setFormInfo] = useState(initialFormInfo);
   const [description, setDescription] = useState([initialdescription]);
 
+  useEffect(() => {
+    const subTotal = description.reduce(
+      (acc, num) => acc + num.qty * num.rate,
+      0
+    );
+
+    let total = subTotal * ((100 + forminfo.mainTax) / 100);
+    let discount =
+      forminfo?.discountType === "amount"
+        ? forminfo.discount
+        : total * (forminfo.discount / 100);
+    total = total - discount;
+    setFormInfo((prev) => ({ ...prev, total, subTotal }));
+  }, [
+    forminfo.discountType,
+    forminfo.taxType,
+    forminfo.discount,
+    forminfo.mainTax,
+    description,
+  ]);
   return (
     <FormContext.Provider
       value={{
@@ -134,8 +170,8 @@ const FormContextProvider = ({ children }: any) => {
         setTodata,
         forminfo,
         setFormInfo,
-        description, 
-        setDescription
+        description,
+        setDescription,
       }}
     >
       {children}

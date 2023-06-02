@@ -1,10 +1,21 @@
 import { Select, Space ,Divider} from "antd";
+import getSymbolFromCurrency from 'currency-symbol-map'
+import { useContext } from "react";
+import { FormContext } from "../../../Context/FormContext";
 const { Option } = Select;
 
-const handleChange = (value: string[]) => {
-  console.log(`selected ${value}`);
-};
+
 const Currency = () => {
+  // const { forminfo, setFormInfo } = useContext(FormContext);
+  const handleChange = (value: string[]) => {
+    // setFormInfo((prev) => ({
+    //   ...prev,
+    //   currency: value,
+    // }));
+  
+    console.log(`selected ${value}`);
+  };
+  
   return (
     <div className="flex flex-col">
       <p className="flex font-semibold">Currency</p>

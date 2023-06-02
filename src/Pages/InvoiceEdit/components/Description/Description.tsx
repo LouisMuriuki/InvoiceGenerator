@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { FormContext } from "../../../../Context/FormContext";
 const { TextArea } = Input;
 const Description = () => {
-  const { description, setDescription } = useContext(FormContext);
+  const { description,forminfo, setDescription } = useContext(FormContext);
   const handleAddField = () => {
     const newfield = {
       description: "",
@@ -100,12 +100,12 @@ const Description = () => {
               <div className="col-span-2  ml-10">
                 <Input
                   placeholder="0.00"
-                  value={(desc?.rate).toLocaleString()}
+                  defaultValue={(desc?.rate).toLocaleString()}
                   onChange={(e) => {
                     setDescription((prev) => {
                       return prev.map((item, index) => {
                         if (i === index) {
-                          return { ...item, rate: e.target.value };
+                          return { ...item, rate: parseFloat(e.target.value) };
                         }
                         return item;
                       });
@@ -116,12 +116,12 @@ const Description = () => {
               <div className="col-span-2 ml-10">
                 <Input
                   placeholder="1"
-                  value={desc?.qty}
+                  defaultValue={desc?.qty}
                   onChange={(e) => {
                     setDescription((prev) => {
                       return prev.map((item, index) => {
                         if (i === index) {
-                          return { ...item, qty: e.target.value };
+                          return { ...item, qty: parseFloat(e.target.value) };
                         }
                         return item;
                       });
