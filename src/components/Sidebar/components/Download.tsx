@@ -26,7 +26,7 @@ const Download = () => {
         // The logo on top of your invoice
         logo: forminfo.logo,
         // The invoice background
-        background: "https://public.easyinvoice.cloud/img/watermark-draft.jpg",
+        background: "",
       },
       // Your own data
       sender: {

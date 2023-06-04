@@ -20,6 +20,8 @@ const beforeUpload = (file: RcFile) => {
 const Top = () => {
   const { forminfo, setFormInfo } = useContext(FormContext);
   const [loading, setLoading] = useState(false);
+  const upload_preset=import.meta.env.VITE_UPLOAD_PRESET
+  const cloudinary_name=import.meta.env.VITE_CLOUDINARY_NAME
 
   const handleChange = async (options: any) => {
     const { onSuccess, onError, file } = options;
@@ -31,9 +33,9 @@ const Top = () => {
     console.log(file);
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "yq8wrg8p");
+    formData.append("upload_preset", upload_preset);
     axios
-      .post("https://api.cloudinary.com/v1_1/dbi34vmol/image/upload", formData)
+      .post(`https://api.cloudinary.com/v1_1/${cloudinary_name}/image/upload`, formData)
       .then((res) => {
         console.log(res);
         onSuccess(res?.data);
