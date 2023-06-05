@@ -66,6 +66,8 @@ const Download = () => {
         "tax-rate": "",
         price: desc.rate,
       })),
+      "tax":forminfo.mainTax,
+      "discount":forminfo.discount,
       // The message you would like to display on the bottom of your invoice
       "bottom-notice": `
       <p style="text-align: left; margin-bottom: 80px;">
@@ -80,9 +82,6 @@ const Download = () => {
       Thank You!
       </p>
     `,
-      tax: `<tax>
-    <p>hjhi</p>   
-</tax>`,
       // Settings to customize your invoice
       settings: {
         currency: "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.

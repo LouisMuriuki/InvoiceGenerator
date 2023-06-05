@@ -27,7 +27,7 @@ const Description = () => {
   console.log(description);
   return (
     <div className="">
-      <div className="border border-y-stone-950 border-x-white  grid grid-cols-12 p-1 mb-3">
+      <div className="border border-y-stone-950 border-x-white hidden md:grid grid-cols-12 p-1 mb-3">
         <div className="col-span-5">
           <h5>Description</h5>
         </div>
@@ -44,25 +44,28 @@ const Description = () => {
           {/* <h5 className="flex items-center justify-end">Tax</h5> */}
         </div>
       </div>
+      <div className="flex md:hidden p-3">
+        <p className="font-bold ">Products/Services</p>
+      </div>
       {description.map((desc, i) => {
         return (
           <div className="flex items-start flex-row mb-5" key={i}>
             <div className="">
-                 <Button
-              type="primary"
-              danger
-              className="flex items-center w-10 justify-center bg-blue-500 text-white mt-1 mr-2"
-              icon={<CloseOutlined />}
-              style={{ width: '100%' }}
-              onClick={() => {
-                handleRemoveDescription(i);
-              }}
-              size="small"
-            />
-                </div>
-           
+              <Button
+                type="primary"
+                danger
+                className="flex items-center w-10 justify-center bg-blue-500 text-white mt-1 mr-2"
+                icon={<CloseOutlined />}
+                style={{ width: "100%" }}
+                onClick={() => {
+                  handleRemoveDescription(i);
+                }}
+                size="small"
+              />
+            </div>
+
             <div className="grid grid-cols-12 gap-1">
-              <div className="col-span-5 ml-2">
+              <div className="col-span-12 md:col-span-5 ml-2">
                 <div className="grid-rows-2">
                   <div className="mb-2">
                     <Input
@@ -97,10 +100,10 @@ const Description = () => {
                   />
                 </div>
               </div>
-              <div className="col-span-2  ml-10">
+              <div className="col-span-3 md:col-span-2 mt-3 md:mt-0  ml-2 md:ml-10">
                 <Input
-                  placeholder="0.00"
-                  defaultValue={(desc?.rate).toLocaleString()}
+                  placeholder="price"
+                  defaultValue={desc?.rate?.toLocaleString()}
                   onChange={(e) => {
                     setDescription((prev) => {
                       return prev.map((item, index) => {
@@ -113,7 +116,10 @@ const Description = () => {
                   }}
                 />
               </div>
-              <div className="col-span-2 ml-10">
+              <div className="col-span-1 md:col-span-0 mt-3 md:mt-0 ml-2 md:ml-10">
+                <p className="flex items-center mt-1 justify-center">X</p>
+              </div>
+              <div className="col-span-3 md:col-span-2 mt-3 md:mt-0 ml-2 md:ml-10">
                 <Input
                   placeholder="1"
                   defaultValue={desc?.qty}
@@ -129,8 +135,10 @@ const Description = () => {
                   }}
                 />
               </div>
-              <div className="flex justify-end col-span-2">
-                <h5>{(desc?.qty * desc?.rate).toLocaleString()}</h5>
+              <div className="flex justify-center md:justify-end mt-3 md:mt-0 col-span-4 md:col-span-1">
+                <h5>
+                  {desc?.rate && (desc?.qty * desc?.rate)?.toLocaleString()}
+                </h5>
               </div>
               <div className="flex justify-end col-span-1">
                 {/* <Checkbox

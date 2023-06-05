@@ -3,6 +3,7 @@ import { DatePicker, Input, Select, Form } from "antd";
 import type { DatePickerProps } from "antd";
 import { FormContext } from "../../../../Context/FormContext";
 import dayjs from "dayjs";
+import useWindowDimensions from "../../../../hooks/useWindoDimensions";
 let dateString = new Date().toLocaleDateString();
 let dateParts = dateString.split("/");
 let year = dateParts[2];
@@ -10,6 +11,7 @@ let month = dateParts[0].length === 1 ? "0" + dateParts[0] : dateParts[0];
 let day = dateParts[1].length === 1 ? "0" + dateParts[1] : dateParts[1];
 let formattedDate = year + "/" + month + "/" + day;
 const InvoiceDetails = () => {
+  const { height, width } = useWindowDimensions();
   const { forminfo, setFormInfo } = useContext(FormContext);
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
@@ -30,13 +32,13 @@ const InvoiceDetails = () => {
   }
   return (
     <div className="flex w-full">
-      <div className="flex items-start flex-col w-1/2 px-4">
+      <div className="flex items-start flex-col w-full md:w-1/2 px-4">
         <div className="flex flex-col w-full">
           <Form
             name="details"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
+            style={{ maxWidth: width-50 }}
             initialValues={{ remember: true }}
             // onFinish={onFinish}
             // onFinishFailed={onFinishFailed}

@@ -49,8 +49,8 @@ interface Description {
 }
 const initialdescription: Description = {
   description: "",
-  rate: 0,
-  qty: 0,
+  rate: undefined as unknown as number,
+  qty: 1,
   amount: 0,
   tax: false,
   taxrate: 0,
