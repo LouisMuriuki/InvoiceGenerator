@@ -36,7 +36,8 @@ interface FormInfo {
   taxLabel: string;
   taxType: string;
   mainTax: number;
-  currency:string
+  currency:string;
+  locale:string;
 }
 interface Description {
   description: string;
@@ -70,7 +71,8 @@ const initialFormInfo: FormInfo = {
   mainTax: 0,
   total: 0,
   subTotal: 0,
-  currency:""
+  currency:"",
+  locale:""
 };
 const initialFromData: FromData = {
   name: "",

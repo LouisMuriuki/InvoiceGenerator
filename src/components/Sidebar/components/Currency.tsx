@@ -9,7 +9,8 @@ const Currency = () => {
   const { setFormInfo } = useContext(FormContext);
   const handleChange = (value: string) => {
     const currency=clm.getCurrencyByName(value)
-    setFormInfo((prev: any) => ({ ...prev, currency}));
+    const locale=clm.getLocaleByName(value)
+    setFormInfo((prev: any) => ({ ...prev, currency,locale}));
   };
 
   return (
