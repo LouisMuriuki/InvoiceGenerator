@@ -84,7 +84,7 @@ const Download = () => {
     `,
       // Settings to customize your invoice
       settings: {
-        currency: "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+        currency: "KES", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
         // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
         // "margin-top": 25, // Defaults to '25'
         // "margin-right": 25, // Defaults to '25'
