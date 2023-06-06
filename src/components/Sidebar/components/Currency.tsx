@@ -24,7 +24,7 @@ const Currency = () => {
         onChange={handleChange}
         optionLabelProp="label"
       >
-        {countries.map((country, i) => {
+        {countries.map((country) => {
           return (
             <Option value={country.name} label={country.name}>
               <Space>{country.name+" - "+ country.currency}</Space>
