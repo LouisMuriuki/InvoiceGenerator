@@ -11,7 +11,7 @@ let month = dateParts[0].length === 1 ? "0" + dateParts[0] : dateParts[0];
 let day = dateParts[1].length === 1 ? "0" + dateParts[1] : dateParts[1];
 let formattedDate = year + "/" + month + "/" + day;
 const InvoiceDetails = () => {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const { forminfo, setFormInfo } = useContext(FormContext);
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
