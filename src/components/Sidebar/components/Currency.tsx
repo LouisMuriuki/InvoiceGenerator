@@ -30,9 +30,9 @@ const Currency = () => {
         <Option value="china" label="China">
           <Space>
             <span role="img" aria-label="China">
-              🇨🇳
+              KS
             </span>
-            China (中国)
+            Kenya 
           </Space>
         </Option>
         <Option value="usa" label="USA">
@@ -40,7 +40,7 @@ const Currency = () => {
             <span role="img" aria-label="USA">
               🇺🇸
             </span>
-            USA (美国)
+            USA 
           </Space>
         </Option>
         <Option value="japan" label="Japan">
@@ -48,7 +48,7 @@ const Currency = () => {
             <span role="img" aria-label="Japan">
               🇯🇵
             </span>
-            Japan (日本)
+            Japan 
           </Space>
         </Option>
         <Option value="korea" label="Korea">
@@ -56,7 +56,7 @@ const Currency = () => {
             <span role="img" aria-label="Korea">
               🇰🇷
             </span>
-            Korea (韩国)
+            Korea 
           </Space>
         </Option>
       </Select>
