@@ -123,15 +123,15 @@ const InvoicePreview = () => {
         </div>
         <div className="flex  justify-end col-span-3 md:col-span-2">
           <div className="grid-rows-2">
-            <p>KSH {forminfo.subTotal}</p>
-            <p>KSH {`${forminfo.mainTax}.00%`}</p>
+            <p>{forminfo.currency} {forminfo.subTotal}</p>
+            <p>{forminfo.currency} {`${forminfo.mainTax}.00%`}</p>
             <p>
-              KSH{" "}
+              {forminfo.currency}{" "}
               {forminfo?.discountType === "amount"
                 ? forminfo.discount
                 : `${forminfo.discount}.00%`}
             </p>
-            <p className="font-bold">KSH {forminfo.total?.toLocaleString()}</p>
+            <p className="font-bold">{forminfo.currency} {forminfo.total?.toLocaleString()}</p>
           </div>
         </div>
       </div>
