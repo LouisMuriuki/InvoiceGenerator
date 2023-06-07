@@ -24,15 +24,17 @@ const Description = () => {
 
     setDescription(updatedDescriptions); // update the state with the modified array
   };
-  console.log(description);
   return (
     <div className="">
       <div className="border border-y-stone-950 border-x-white hidden md:grid grid-cols-12 p-1 mb-3">
-        <div className="col-span-5">
+        <div className="col-span-4">
           <h5>Description</h5>
         </div>
         <div className="col-span-2">
           <h5 className="flex items-center justify-end">Rate</h5>
+        </div>
+        <div className="col-span-1">
+
         </div>
         <div className="col-span-2">
           <h5 className="flex items-center justify-end">Qty</h5>
@@ -65,7 +67,7 @@ const Description = () => {
             </div>
 
             <div className="grid grid-cols-12 gap-1">
-              <div className="col-span-12 md:col-span-5 ml-2">
+              <div className="col-span-12 md:col-span-4 ml-2">
                 <div className="grid-rows-2">
                   <div className="mb-2">
                     <Input

@@ -71,8 +71,8 @@ const initialFormInfo: FormInfo = {
   mainTax: 0,
   total: 0,
   subTotal: 0,
-  currency:"",
-  locale:""
+  currency:"KES",
+  locale:"ebu_KE"
 };
 const initialFromData: FromData = {
   name: "",

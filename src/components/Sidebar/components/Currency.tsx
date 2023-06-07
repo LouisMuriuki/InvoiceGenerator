@@ -7,6 +7,8 @@ const countries = clm.getAllCountries();
 
 const Currency = () => {
   const { setFormInfo } = useContext(FormContext);
+  const locale=clm.getLocaleByName("Kenya")
+  console.log(locale)
   const handleChange = (value: string) => {
     const currency=clm.getCurrencyByName(value)
     const locale=clm.getLocaleByName(value)
@@ -26,7 +28,7 @@ const Currency = () => {
       >
         {countries.map((country) => {
           return (
-            <Option value={country.name} label={country.name}>
+            <Option value={country.name} key={country.name} label={country.name}>
               <Space>{country.name+" - "+ country.currency}</Space>
             </Option>
           );

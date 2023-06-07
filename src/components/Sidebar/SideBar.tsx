@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ViewOptions from "./components/ViewOptions";
+import ViewOptions from "./components/Email";
 import Currency from "./components/Currency";
 import Tax from "./components/Tax";
 import { FormContext } from "../../Context/FormContext";

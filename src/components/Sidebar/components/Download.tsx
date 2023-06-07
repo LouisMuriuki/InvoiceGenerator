@@ -48,7 +48,7 @@ const Download = () => {
         country: todata.country,
         custom1: todata.phone,
         custom2: todata.email,
-        custom3: todata.website,
+        custom3: `<a href=${todata.website}>${todata.website}</a>`,
       },
       information: {
         // Invoice number
@@ -62,12 +62,13 @@ const Download = () => {
       // Total values are being calculated automatically
       products: description.map((desc) => ({
         quantity: desc.qty,
-        description: desc.description,
-        "tax-rate": "",
+        description: `<p style="margin-bottom:0px;">${desc.description}</p>
+           <p style="margin-top:0px; margin-bottom:20px;">${desc.additional}</p>`,
+        "tax-rate": 0,
         price: desc.rate,
       })),
-      "tax":forminfo.mainTax,
-      "discount":forminfo.discount,
+      tax: forminfo.mainTax,
+      discount: forminfo.discount,
       // The message you would like to display on the bottom of your invoice
       "bottom-notice": `
       <p style="text-align: left; margin-bottom: 80px;">
@@ -84,8 +85,8 @@ const Download = () => {
     `,
       // Settings to customize your invoice
       settings: {
-        "currency": forminfo.currency, // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
-        "locale": forminfo.locale, // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
+        currency: forminfo.currency, // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+        // locale: forminfo.locale, // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
         // "margin-top": 25, // Defaults to '25'
         // "margin-right": 25, // Defaults to '25'
         // "margin-left": 25, // Defaults to '25'
@@ -102,7 +103,7 @@ const Download = () => {
         // "date": "Datum", // Default to 'Date'
         // "due-date": "Verloopdatum", // Defaults to 'Due Date'
         // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
-        // "products": "Producten", // Defaults to 'Products'
+        products: "Description", // Defaults to 'Products'
         // "quantity": "Aantal", // Default to 'Quantity'
         // "price": "Prijs", // Defaults to 'Price'
         // "product-total": "Totaal", // Defaults to 'Total'

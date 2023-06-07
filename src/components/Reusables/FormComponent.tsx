@@ -44,7 +44,6 @@ const FormComponent = ({ fromlabels, tolabels }: FormProps) => {
       >
         {fromlabels &&
           fromlabels.map((labels, i) => {
-            console.log(fromdata[labels.name]);
             return (
               <div key={i}>
                 <Form.Item

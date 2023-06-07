@@ -123,7 +123,7 @@ const InvoicePreview = () => {
         </div>
         <div className="flex  justify-end col-span-3 md:col-span-2">
           <div className="grid-rows-2">
-            <p>{forminfo.currency} {forminfo.subTotal}</p>
+            <p>{forminfo.currency} {forminfo.subTotal?.toLocaleString()}</p>
             <p>{forminfo.currency} {`${forminfo.mainTax}.00%`}</p>
             <p>
               {forminfo.currency}{" "}

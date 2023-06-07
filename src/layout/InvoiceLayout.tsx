@@ -9,7 +9,7 @@ const InvoiceLayout = () => {
   const { selectedoptions } = useContext(FormContext);
 
   return (
-    <div className=" max-w-full  flex container mx-0 md:mx-32 py-1 md:py-5 ">
+    <div className=" max-w-full  flex container mx-0 md:mx-32 px-2 md:px-0 py-1 md:py-5 ">
       <div className="flex flex-col md:flex-row w-full">
         <div className=" flex flex-col w-full md:w-3/4">
           <InvoiceTop />
