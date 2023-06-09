@@ -36,8 +36,8 @@ interface FormInfo {
   taxLabel: string;
   taxType: string;
   mainTax: number;
-  currency:string;
-  locale:string;
+  currency: string;
+  locale: string;
 }
 interface Description {
   description: string;
@@ -71,8 +71,8 @@ const initialFormInfo: FormInfo = {
   mainTax: 0,
   total: 0,
   subTotal: 0,
-  currency:"KES",
-  locale:"ebu_KE"
+  currency: "KES",
+  locale: "ebu_KE",
 };
 const initialFromData: FromData = {
   name: "",
@@ -139,7 +139,9 @@ const FormContextProvider = ({ children }: any) => {
 
   useEffect(() => {
     const subTotal = description.reduce(
-      (acc, num) => acc + num.qty * num.rate,
+      (acc, num) =>
+        acc +
+        (num.qty * num.rate + (num.taxrate * (num?.qty * num?.rate)) / 100),
       0
     );
 

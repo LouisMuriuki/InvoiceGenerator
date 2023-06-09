@@ -62,13 +62,15 @@ const Download = () => {
       // Total values are being calculated automatically
       products: description.map((desc) => ({
         quantity: desc.qty,
-        description: `<p style="margin-bottom:0px;">${desc.description}</p>
-           <p style="margin-top:0px; margin-bottom:20px;">${desc.additional}</p>`,
-        "tax-rate": 0,
+        description: `<p style="margin-bottom: 0px;">${desc.description}</p>
+        ${
+          desc.additional
+            ? `<p style="margin-top: 0px; margin-bottom: 20px;">${desc.additional}</p>`
+            : ""
+        }`,
+        "tax-rate": desc.taxrate,
         price: desc.rate,
       })),
-      tax: forminfo.mainTax,
-      discount: forminfo.discount,
       // The message you would like to display on the bottom of your invoice
       "bottom-notice": `
       <p style="text-align: left; margin-bottom: 80px;">

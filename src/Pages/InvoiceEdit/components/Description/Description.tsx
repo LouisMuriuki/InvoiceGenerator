@@ -1,4 +1,4 @@
-import { Input, Divider, Button } from "antd";
+import { Input, Divider, Button, InputNumber } from "antd";
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { useContext } from "react";
 import { FormContext } from "../../../../Context/FormContext";
@@ -18,6 +18,8 @@ const Description = () => {
     setDescription((prev) => [...prev, newfield]);
   };
 
+  console.log(description);
+
   const handleRemoveDescription = (index: number) => {
     const updatedDescriptions = [...description]; // create a copy of the array
     updatedDescriptions.splice(index, 1); // modify the copy by removing the description
@@ -33,9 +35,7 @@ const Description = () => {
         <div className="col-span-2">
           <h5 className="flex items-center justify-end">Rate</h5>
         </div>
-        <div className="col-span-1">
-
-        </div>
+        <div className="col-span-1"></div>
         <div className="col-span-2">
           <h5 className="flex items-center justify-end">Qty</h5>
         </div>
@@ -43,7 +43,7 @@ const Description = () => {
           <h5 className="flex items-center justify-end">Amount</h5>
         </div>
         <div className="col-span-1">
-          {/* <h5 className="flex items-center justify-end">Tax</h5> */}
+          <h5 className="flex items-center justify-end">Tax</h5>
         </div>
       </div>
       <div className="flex md:hidden p-3">
@@ -121,7 +121,7 @@ const Description = () => {
               <div className="col-span-1 md:col-span-0 mt-3 md:mt-0 ml-2 md:ml-10">
                 <p className="flex items-center mt-1 justify-center">X</p>
               </div>
-              <div className="col-span-3 md:col-span-2 mt-3 md:mt-0 ml-2 md:ml-10">
+              <div className="col-span-2 md:col-span-2 mt-3 md:mt-0 ml-2 md:ml-10">
                 <Input
                   placeholder="1"
                   defaultValue={desc?.qty}
@@ -137,24 +137,36 @@ const Description = () => {
                   }}
                 />
               </div>
-              <div className="flex justify-center md:justify-end mt-3 md:mt-0 col-span-4 md:col-span-1">
-                <h5>
-                  {desc?.rate && (desc?.qty * desc?.rate)?.toLocaleString()}
+              <div className="flex justify-center md:justify-end mt-3 md:mt-0 col-span-3 md:col-span-2">
+                <h5 className="flex mt-1">
+                  {desc?.rate > 0 &&
+                    (
+                      desc?.qty * desc?.rate +
+                      (desc.taxrate * (desc?.qty * desc?.rate)) / 100
+                    )?.toLocaleString()}
                 </h5>
               </div>
-              <div className="flex justify-end col-span-1">
-                {/* <Checkbox
-                  onChange={(e) => {
+              <div className="flex justify-end items-start mt-3 md:mt-0 col-span-3 md:col-span-1 ml-1">
+                <InputNumber
+                  placeholder="tax-rate"
+                  value={desc?.taxrate || 0}
+                  formatter={(value) => `${value}.00%`}      
+                  parser={(value) => parseFloat(value?.replace("%", "") || "0")} 
+                  onChange={(value) => {
+                    //@ts-ignore
                     setDescription((prev) => {
                       return prev.map((item, index) => {
                         if (i === index) {
-                          return { ...item, tax: e.target.checked };
+                          return {
+                            ...item,
+                            taxrate: value !== undefined ? value : 0,
+                          };
                         }
                         return item;
                       });
                     });
                   }}
-                ></Checkbox> */}
+                />
               </div>
             </div>
           </div>

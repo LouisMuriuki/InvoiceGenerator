@@ -69,7 +69,7 @@ const InvoicePreview = () => {
       </div>
       <hr className="h-px my-8 bg-gray-200 border-1 w-full dark:bg-gray-700" />
       <div className="border border-y-stone-950 border-x-white  grid grid-cols-12 p-1 mb-3">
-        <div className="col-span-6">
+        <div className="col-span-4 md:col-span-5">
           <h5 className="font-bold text-sm md:text-base">Description</h5>
         </div>
         <div className="col-span-2">
@@ -80,7 +80,9 @@ const InvoicePreview = () => {
             Price
           </h5>
         </div>
-
+        <div className="col-span-2 md:col-span-1">
+          <h5 className="flex items-center justify-end font-bold text-sm md:text-base">Tax</h5>
+        </div>
         <div className="col-span-2">
           <h5 className="flex items-center justify-end font-bold text-sm md:text-base">Amount</h5>
         </div>
@@ -89,7 +91,7 @@ const InvoicePreview = () => {
         return (
           <div key={i}>
             <div className="grid text-sm md:text-base grid-cols-12 gap-1">
-              <div className="col-span-6">
+              <div className="col-span-4 md:col-span-5">
                 <div className="grid-rows-2">
                   <p>{desc?.description}</p>
                   <p>{desc?.additional}</p>
@@ -101,8 +103,14 @@ const InvoicePreview = () => {
               <div className="flex  justify-end col-span-2">
                 <p>{(desc?.rate)?.toLocaleString()}</p>
               </div>
+              <div className="flex  justify-end col-span-2 md:col-span-1">
+                <p>{`${desc?.taxrate}.00%`}</p>
+              </div>
               <div className="flex  justify-end col-span-2">
-                <h5>{(desc?.qty * desc?.rate)?.toLocaleString()}</h5>
+                <h5>{(
+                      desc?.qty * desc?.rate +
+                      (desc.taxrate * (desc?.qty * desc?.rate)) / 100
+                    )?.toLocaleString()}</h5>
               </div>
             </div>{" "}
             <Divider dashed />
@@ -114,23 +122,12 @@ const InvoicePreview = () => {
         <div className="flex justify-end col-span-2 md:col-span-2">
           <div className="grid-rows-2">
             <p>Sub-total</p>
-            <p>
-              {forminfo.taxLabel} ({}%)
-            </p>
-            <p>Discount</p>
             <p>Total</p>
           </div>
         </div>
         <div className="flex  justify-end col-span-3 md:col-span-2">
           <div className="grid-rows-2">
             <p>{forminfo.currency} {forminfo.subTotal?.toLocaleString()}</p>
-            <p>{forminfo.currency} {`${forminfo.mainTax}.00%`}</p>
-            <p>
-              {forminfo.currency}{" "}
-              {forminfo?.discountType === "amount"
-                ? forminfo.discount
-                : `${forminfo.discount}.00%`}
-            </p>
             <p className="font-bold">{forminfo.currency} {forminfo.total?.toLocaleString()}</p>
           </div>
         </div>
