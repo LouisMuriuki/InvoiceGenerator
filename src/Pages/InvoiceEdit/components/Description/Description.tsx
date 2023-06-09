@@ -146,11 +146,11 @@ const Description = () => {
                     )?.toLocaleString()}
                 </h5>
               </div>
-              <div className="flex justify-end items-start mt-3 md:mt-0 col-span-3 md:col-span-1 ml-1">
-                <label className="flex md:hidden mt-1 ml-[-10px] mr-1 text-gray-400">Tax:</label>
+              <div className="flex flex-col md:flex-row justify-end items-start mt-3 md:mt-0 col-span-3 md:col-span-1 ml-1">
+                <label className="flex md:hidden items-center mr-1 mt-[-20px] ml-8 justify-center  text-xs text-gray-400">Tax:</label>
                 <InputNumber
                   placeholder="tax-rate"
-                  
+                  className="w-[100%]"
                   value={desc?.taxrate || 0}
                   formatter={(value) => `${value}.00%`}      
                   parser={(value) => parseFloat(value?.replace("%", "") || "0")} 
