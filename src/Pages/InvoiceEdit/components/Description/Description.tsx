@@ -147,8 +147,10 @@ const Description = () => {
                 </h5>
               </div>
               <div className="flex justify-end items-start mt-3 md:mt-0 col-span-3 md:col-span-1 ml-1">
+                <label className="flex md:hidden mt-1 ml-[-10px] mr-1 text-gray-400">Tax:</label>
                 <InputNumber
                   placeholder="tax-rate"
+                  
                   value={desc?.taxrate || 0}
                   formatter={(value) => `${value}.00%`}      
                   parser={(value) => parseFloat(value?.replace("%", "") || "0")} 
